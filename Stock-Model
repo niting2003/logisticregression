@@ -1,22 +1,22 @@
 ##This is a New file created for logistic regression in my window system##
-## Load the Dataset and run Numerical & Graphical Summary by Opening library and attach dataset.
+##Load the Dataset and run Numerical & Graphical Summary by Opening library and attach dataset.
 > library(ISLR)
 > attach (Smarket)
-Split the data set into Two data set Training and Testing Data Set.
+##Split the data set into Two data set Training and Testing Data Set.
    > training = (Year < 2005)
    > testing = !training
    > training_data = Smarket[training, ]
    > testing_data = Smarket[testing,]
    > Direction_testing = Direction[testing]
 First Load the Library(CaTools)
-## Fit Logistic regression model using training data.
+##Fit Logistic regression model using training data.
    > stock_model = glm(Direction~ Lag1+Lag2+Lag3+Lag4+Lag5+Volume, data= training_data, family = binomial)
 
-## Use the Fitted model  to do Prediction for the Test Data
+##Use the Fitted model  to do Prediction for the Test Data
     > model_pred_Direction = rep("Down", 252)
     > model_pred_Direction[model_pred_proba >0.5] = "Up"
     > View(model_pred_Direction)
-## Create Confusion matrix using & compute miscalssification rate.
+##Create Confusion matrix using & compute miscalssification rate.
     > table(model_pred_Direction, Direction_testing)
     > mean(model_pred_Direction !=Direction_testing)
     
